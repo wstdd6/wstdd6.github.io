@@ -152,6 +152,57 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-aop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高<br>底层实现：jdk动态代理，cglib，两者都是在运行时期织入<br>aspect oriented<br>aspect 切面；<br>aop是我们要实现的切面，springaop是我们实现这个切面的手段<br>@Compont添加到impl层，表示这个类要交给spring去管理<br>时<br>首先看proxyTargetClass（默认关闭），开启时不管有没有接口都用cgib<br>（有接口即继承了一个类，没有则没有继承）<br>如果有接口，用jdk<br>如果没有接口，用cglib<br>（有接口的话，继承的是dao，即 implements dao）</p>
+<p>spring的织入是在初始化的时候已经完成了，不是在调用get()方法时再完成</p>
+<p>因为它的底层是map，所以只要找到singletonObject.put方法就可以了，条件查询：beanName.equals(“dao”)<br>找到没有完成代理的地方再跑一遍</p>
+<p>spring后置处理器完成的动态代理<br>optimize优化，优化编辑器</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/29/aop/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-新建文本文档 (8) - 副本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

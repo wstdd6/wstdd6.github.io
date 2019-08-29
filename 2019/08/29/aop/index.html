@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ctrl+alt+b 查看源码ctrl+alt+v 重构,需能成为一个表达式将SpringApplication.run(Application.class, args);快速变成ConfigurableApplicationContext run = SpringApplication.run(Application.class, args);ctrl +p 查看括号内的参数ctrl+h 看子类">
+  <meta name="description" content="aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高底层实现：jdk动态代理，cglib，两者都是在运行时期织入aspect orientedaspect 切面；aop是我们要实现的切面，springaop是我们实现这个切面的手段@Compont添加到impl层，表示这个类要交给spring去管理时首先看proxyTargetClass（默认关闭），开启">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2019/07/29/新建文本文档 (8) - 副本/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/aop/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="ctrl+alt+b 查看源码ctrl+alt+v 重构,需能成为一个表达式将SpringApplication.run(Application.class, args);快速变成ConfigurableApplicationContext run = SpringApplication.run(Application.class, args);ctrl +p 查看括号内的参数ctrl+h 看子类">
+<meta property="og:description" content="aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高底层实现：jdk动态代理，cglib，两者都是在运行时期织入aspect orientedaspect 切面；aop是我们要实现的切面，springaop是我们实现这个切面的手段@Compont添加到impl层，表示这个类要交给spring去管理时首先看proxyTargetClass（默认关闭），开启">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-19T12:35:19.273Z">
+<meta property="og:updated_time" content="2019-08-15T12:57:30.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="ctrl+alt+b 查看源码ctrl+alt+v 重构,需能成为一个表达式将SpringApplication.run(Application.class, args);快速变成ConfigurableApplicationContext run = SpringApplication.run(Application.class, args);ctrl +p 查看括号内的参数ctrl+h 看子类">
+<meta name="twitter:description" content="aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高底层实现：jdk动态代理，cglib，两者都是在运行时期织入aspect orientedaspect 切面；aop是我们要实现的切面，springaop是我们实现这个切面的手段@Compont添加到impl层，表示这个类要交给spring去管理时首先看proxyTargetClass（默认关闭），开启">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,17 +154,15 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-新建文本文档 (8) - 副本" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-aop" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ctrl+alt+b 查看源码<br>ctrl+alt+v 重构,需能成为一个表达式<br>将SpringApplication.run(Application.class, args);快速变成<br>ConfigurableApplicationContext run = SpringApplication.run(Application.class, args);<br>ctrl +p 查看括号内的参数<br>ctrl+h 看子类</p>
-<p>取消断点的快捷键<br>ctrl+l 格式化<br>hexo clean g d</p>
-<p>我的ip地址<br>192.168.43.94</p>
-<p>ip address</p>
-<p>cd ../.. 退两层<br>._config.yml.swp<br>点i可以编辑</p>
-<p>我的博客地址<br>wstdd6.github.io</p>
+        <p>aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高<br>底层实现：jdk动态代理，cglib，两者都是在运行时期织入<br>aspect oriented<br>aspect 切面；<br>aop是我们要实现的切面，springaop是我们实现这个切面的手段<br>@Compont添加到impl层，表示这个类要交给spring去管理<br>时<br>首先看proxyTargetClass（默认关闭），开启时不管有没有接口都用cgib<br>（有接口即继承了一个类，没有则没有继承）<br>如果有接口，用jdk<br>如果没有接口，用cglib<br>（有接口的话，继承的是dao，即 implements dao）</p>
+<p>spring的织入是在初始化的时候已经完成了，不是在调用get()方法时再完成</p>
+<p>因为它的底层是map，所以只要找到singletonObject.put方法就可以了，条件查询：beanName.equals(“dao”)<br>找到没有完成代理的地方再跑一遍</p>
+<p>spring后置处理器完成的动态代理<br>optimize优化，优化编辑器</p>
 
       
 
@@ -244,7 +242,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/29/新建文本文档 (8) - 副本/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/29/aop/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -258,15 +256,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/29/aop/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
+    <a href="/2019/07/29/新建文本文档 (8) - 副本/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
