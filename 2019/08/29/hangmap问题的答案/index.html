@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高底层实现：jdk动态代理，cglib，两者都是在运行时期织入aspect orientedaspect 切面；aop是我们要实现的切面，springaop是我们实现这个切面的手段@Compont添加到impl层，表示这个类要交给spring去管理时首先看proxyTargetClass（默认关闭），开启">
+  <meta name="description" content="hashmap【】hashcode可以会重复，所以用链表结构jdk7是加入头部，速度快jdk8是加入尾部 【】jdk7 链表插入，是加入头节点位置，需要移步放到不为空的位置上才能进行扩容put有个bug，可能会造成死锁 A.next=B,B.next=A，所以会导致死锁 因为链表插入的时候，链表的顺序会变得完全相反 【】jdk8，如果链表结构元素大于8，就转化为红黑树；当红黑树上面的节点数小于6，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2019/08/29/aop/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/hangmap问题的答案/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高底层实现：jdk动态代理，cglib，两者都是在运行时期织入aspect orientedaspect 切面；aop是我们要实现的切面，springaop是我们实现这个切面的手段@Compont添加到impl层，表示这个类要交给spring去管理时首先看proxyTargetClass（默认关闭），开启">
+<meta property="og:description" content="hashmap【】hashcode可以会重复，所以用链表结构jdk7是加入头部，速度快jdk8是加入尾部 【】jdk7 链表插入，是加入头节点位置，需要移步放到不为空的位置上才能进行扩容put有个bug，可能会造成死锁 A.next=B,B.next=A，所以会导致死锁 因为链表插入的时候，链表的顺序会变得完全相反 【】jdk8，如果链表结构元素大于8，就转化为红黑树；当红黑树上面的节点数小于6，">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-15T12:57:30.612Z">
+<meta property="og:updated_time" content="2019-08-29T03:59:22.518Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高底层实现：jdk动态代理，cglib，两者都是在运行时期织入aspect orientedaspect 切面；aop是我们要实现的切面，springaop是我们实现这个切面的手段@Compont添加到impl层，表示这个类要交给spring去管理时首先看proxyTargetClass（默认关闭），开启">
+<meta name="twitter:description" content="hashmap【】hashcode可以会重复，所以用链表结构jdk7是加入头部，速度快jdk8是加入尾部 【】jdk7 链表插入，是加入头节点位置，需要移步放到不为空的位置上才能进行扩容put有个bug，可能会造成死锁 A.next=B,B.next=A，所以会导致死锁 因为链表插入的时候，链表的顺序会变得完全相反 【】jdk8，如果链表结构元素大于8，就转化为红黑树；当红黑树上面的节点数小于6，">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,15 +154,30 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-aop" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-hangmap问题的答案" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高<br>底层实现：jdk动态代理，cglib，两者都是在运行时期织入<br>aspect oriented<br>aspect 切面；<br>aop是我们要实现的切面，springaop是我们实现这个切面的手段<br>@Compont添加到impl层，表示这个类要交给spring去管理<br>时<br>首先看proxyTargetClass（默认关闭），开启时不管有没有接口都用cgib<br>（有接口即继承了一个类，没有则没有继承）<br>如果有接口，用jdk<br>如果没有接口，用cglib<br>（有接口的话，继承的是dao，即 implements dao）</p>
-<p>spring的织入是在初始化的时候已经完成了，不是在调用get()方法时再完成</p>
-<p>因为它的底层是map，所以只要找到singletonObject.put方法就可以了，条件查询：beanName.equals(“dao”)<br>找到没有完成代理的地方再跑一遍</p>
-<p>spring后置处理器完成的动态代理<br>optimize优化，优化编辑器</p>
+        <p>hashmap<br>【】hashcode可以会重复，所以用链表结构<br>jdk7是加入头部，速度快<br>jdk8是加入尾部</p>
+<p>【】jdk7 链表插入，是加入头节点位置，需要移步<br>放到不为空的位置上才能进行扩容<br>put有个bug，可能会造成死锁</p>
+<p>A.next=B,B.next=A，所以会导致死锁</p>
+<p>因为链表插入的时候，链表的顺序会变得完全相反</p>
+<p>【】jdk8，如果链表结构元素大于8，就转化为红黑树；<br>当红黑树上面的节点数小于6，会把红黑树变成链表</p>
+<p>【】扩容之后，下标会变化，因为插入了值，原来下标是1的话，就会变成0；<br>原来下标是0的话，就会变成1</p>
+<p>因为源码中下标的计算是index + table.length（索引加上链表或红黑树的长度）；而且二进制只有1和0，只要加了值，变化了，就会0和1转换<br>这样不会造成死锁，加入在尾结点，顺序也能保持一致</p>
+<p>hash：只要id一样就一样</p>
+<p>【】person1   id 1  name  周<br>person2  id 1  name  周瑜<br>person1.equals person2; true<br>hashmap.put(person1,”1”);sout(person2)时，值为null</p>
+<p>为什么要重写equals方法是，要重写hashcode方法，跟hashmap有什么方法吗？<br>用equals时，因为hashcode值不一样的时候，用get取值的时候是娶不到值的，<br>所以要重写hashcode，只需要用id就行了</p>
+<p>【】删除第一个value值时：<br>while(iterator.hashNext()){<br>if（key.equals(1)）{<br>hashmap.remove(key);<br>}}<br>会报ConcurrentModificationException异常原因：<br>因为进行到第二步的时候，系统会自动准备进行第三步，而如果只有两个值，就会报错<br>即实际修改次数大于只能被修改次数时，就报错；<br>所以hashmap线程不安全<br>而且hashmap源码会自动抛出ConcurrentModificationException异常</p>
+<p>（或者说删除其中一个value报错原因：两个线程，如果一个线程在遍历，另一个线程在remove，就会报错。这是猜想，由于hashmap源码会自动抛出ConcurrentModificationException异常，导致猜想不能验证）</p>
+<p>怎么解决？<br>while(iterator.hashNext()){<br>if（key.equals(1)）{<br>iterator.remove();<br>}}<br>(还有种方法叫co。。。hashmap，设计初衷就是为了解决这个问题，，，)<br>会多给一个赋值（不知道什么原理能解决）</p>
+<p>如果提前知道hashmap的容量的话，提前设置增大容量，可以避免报错<br>（即修改 initialCapacity 初始化容量的值）</p>
+<p>HashMap 1.7 与 1.8 的 区别，说明 1.8 做了哪些优化，如何优化的<br>楼主<br>发表于 2018-05-25 15:13:51 | 查看: 2636| 回复: 0<br>JDK1.7用的链表散列结构，JDK1.8用的红黑树</p>
+<p>在扩充HashMap的时候，JDK1.7的重新计算hash，</p>
+<p>JDK1.7只需要看看原来的hash值新增的那个bit是1还是0就好了，是0的话索引没变，是1的话索引变成“原索引+oldCap；</p>
+<p>DK1.7中rehash的时候，旧链表迁移新链表的时候，如果在新表的数组索引位置相同，则链表元素会倒置，但是从上图可以看出，</p>
+<p>JDK1.8不会倒置</p>
 
       
 
@@ -242,7 +257,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/29/aop/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/29/hangmap问题的答案/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -256,7 +271,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/29/hangmap问题的答案/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/29/枚举/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -266,7 +281,7 @@
     </a>
   
   
-    <a href="/2019/07/29/新建文本文档 (8) - 副本/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/08/29/aop/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>

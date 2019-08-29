@@ -152,6 +152,132 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-枚举" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>多例设计模式：<br>构造方法私有化，然后在类的内部提供有若干实例化对象，并且通过static方法返回</p>
+<p>枚举：enum<br>一个类有且只有固定数量的实例</p>
+<p>所有的对象都是大写的<br>大写说明此处为实例化对象</p>
+<p>使用枚举之后可以简化的替代多例设计模式</p>
+<p>枚举可以实现单例模式</p>
+<p>（每一个枚举都相当于一个单例）</p>
+<p>枚举是一个被命名的整型常数的集合</p>
+<p>单例是一种特殊的枚举</p>
+<p>对于String s5 = new String(“Hello World”); 创建了几个对象，我先前理解有误。<br>总结各种看法，因为有new，所以堆中必然有一个对象。另外，如果常量池中已有”Hello World”，则不创建，没有，则在常量池中创建。所以这句代码，究竟在内存中创建一个还是两个对象，视情况而定。</p>
+<p>Java6和6之前，常量池是存放在方法区中的。</p>
+<p>Java7，将常量池是存放到了堆中，常量池就相当于是在永久代中，所以永久代存放在堆中。</p>
+<p>Java8之后，取消了整个永久代区域，取而代之的是元空间。没有再对常量池进行调整。</p>
+<p>堆内存、栈方法</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/29/枚举/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-hangmap问题的答案" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>hashmap<br>【】hashcode可以会重复，所以用链表结构<br>jdk7是加入头部，速度快<br>jdk8是加入尾部</p>
+<p>【】jdk7 链表插入，是加入头节点位置，需要移步<br>放到不为空的位置上才能进行扩容<br>put有个bug，可能会造成死锁</p>
+<p>A.next=B,B.next=A，所以会导致死锁</p>
+<p>因为链表插入的时候，链表的顺序会变得完全相反</p>
+<p>【】jdk8，如果链表结构元素大于8，就转化为红黑树；<br>当红黑树上面的节点数小于6，会把红黑树变成链表</p>
+<p>【】扩容之后，下标会变化，因为插入了值，原来下标是1的话，就会变成0；<br>原来下标是0的话，就会变成1</p>
+<p>因为源码中下标的计算是index + table.length（索引加上链表或红黑树的长度）；而且二进制只有1和0，只要加了值，变化了，就会0和1转换<br>这样不会造成死锁，加入在尾结点，顺序也能保持一致</p>
+<p>hash：只要id一样就一样</p>
+<p>【】person1   id 1  name  周<br>person2  id 1  name  周瑜<br>person1.equals person2; true<br>hashmap.put(person1,”1”);sout(person2)时，值为null</p>
+<p>为什么要重写equals方法是，要重写hashcode方法，跟hashmap有什么方法吗？<br>用equals时，因为hashcode值不一样的时候，用get取值的时候是娶不到值的，<br>所以要重写hashcode，只需要用id就行了</p>
+<p>【】删除第一个value值时：<br>while(iterator.hashNext()){<br>if（key.equals(1)）{<br>hashmap.remove(key);<br>}}<br>会报ConcurrentModificationException异常原因：<br>因为进行到第二步的时候，系统会自动准备进行第三步，而如果只有两个值，就会报错<br>即实际修改次数大于只能被修改次数时，就报错；<br>所以hashmap线程不安全<br>而且hashmap源码会自动抛出ConcurrentModificationException异常</p>
+<p>（或者说删除其中一个value报错原因：两个线程，如果一个线程在遍历，另一个线程在remove，就会报错。这是猜想，由于hashmap源码会自动抛出ConcurrentModificationException异常，导致猜想不能验证）</p>
+<p>怎么解决？<br>while(iterator.hashNext()){<br>if（key.equals(1)）{<br>iterator.remove();<br>}}<br>(还有种方法叫co。。。hashmap，设计初衷就是为了解决这个问题，，，)<br>会多给一个赋值（不知道什么原理能解决）</p>
+<p>如果提前知道hashmap的容量的话，提前设置增大容量，可以避免报错<br>（即修改 initialCapacity 初始化容量的值）</p>
+<p>HashMap 1.7 与 1.8 的 区别，说明 1.8 做了哪些优化，如何优化的<br>楼主<br>发表于 2018-05-25 15:13:51 | 查看: 2636| 回复: 0<br>JDK1.7用的链表散列结构，JDK1.8用的红黑树</p>
+<p>在扩充HashMap的时候，JDK1.7的重新计算hash，</p>
+<p>JDK1.7只需要看看原来的hash值新增的那个bit是1还是0就好了，是0的话索引没变，是1的话索引变成“原索引+oldCap；</p>
+<p>DK1.7中rehash的时候，旧链表迁移新链表的时候，如果在新表的数组索引位置相同，则链表元素会倒置，但是从上图可以看出，</p>
+<p>JDK1.8不会倒置</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/29/hangmap问题的答案/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-aop" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

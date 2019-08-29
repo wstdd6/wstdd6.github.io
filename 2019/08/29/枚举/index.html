@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高底层实现：jdk动态代理，cglib，两者都是在运行时期织入aspect orientedaspect 切面；aop是我们要实现的切面，springaop是我们实现这个切面的手段@Compont添加到impl层，表示这个类要交给spring去管理时首先看proxyTargetClass（默认关闭），开启">
+  <meta name="description" content="多例设计模式：构造方法私有化，然后在类的内部提供有若干实例化对象，并且通过static方法返回 枚举：enum一个类有且只有固定数量的实例 所有的对象都是大写的大写说明此处为实例化对象 使用枚举之后可以简化的替代多例设计模式 枚举可以实现单例模式 （每一个枚举都相当于一个单例） 枚举是一个被命名的整型常数的集合 单例是一种特殊的枚举 对于String s5 = new String(“Hello">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2019/08/29/aop/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/29/枚举/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高底层实现：jdk动态代理，cglib，两者都是在运行时期织入aspect orientedaspect 切面；aop是我们要实现的切面，springaop是我们实现这个切面的手段@Compont添加到impl层，表示这个类要交给spring去管理时首先看proxyTargetClass（默认关闭），开启">
+<meta property="og:description" content="多例设计模式：构造方法私有化，然后在类的内部提供有若干实例化对象，并且通过static方法返回 枚举：enum一个类有且只有固定数量的实例 所有的对象都是大写的大写说明此处为实例化对象 使用枚举之后可以简化的替代多例设计模式 枚举可以实现单例模式 （每一个枚举都相当于一个单例） 枚举是一个被命名的整型常数的集合 单例是一种特殊的枚举 对于String s5 = new String(“Hello">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-15T12:57:30.612Z">
+<meta property="og:updated_time" content="2019-08-29T05:18:43.404Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高底层实现：jdk动态代理，cglib，两者都是在运行时期织入aspect orientedaspect 切面；aop是我们要实现的切面，springaop是我们实现这个切面的手段@Compont添加到impl层，表示这个类要交给spring去管理时首先看proxyTargetClass（默认关闭），开启">
+<meta name="twitter:description" content="多例设计模式：构造方法私有化，然后在类的内部提供有若干实例化对象，并且通过static方法返回 枚举：enum一个类有且只有固定数量的实例 所有的对象都是大写的大写说明此处为实例化对象 使用枚举之后可以简化的替代多例设计模式 枚举可以实现单例模式 （每一个枚举都相当于一个单例） 枚举是一个被命名的整型常数的集合 单例是一种特殊的枚举 对于String s5 = new String(“Hello">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,15 +154,24 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-aop" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-枚举" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>aop就是把业务逻辑和代码（横切的问题）分离开，从而达到解耦的目的，使代码的重用性和开发效率提高<br>底层实现：jdk动态代理，cglib，两者都是在运行时期织入<br>aspect oriented<br>aspect 切面；<br>aop是我们要实现的切面，springaop是我们实现这个切面的手段<br>@Compont添加到impl层，表示这个类要交给spring去管理<br>时<br>首先看proxyTargetClass（默认关闭），开启时不管有没有接口都用cgib<br>（有接口即继承了一个类，没有则没有继承）<br>如果有接口，用jdk<br>如果没有接口，用cglib<br>（有接口的话，继承的是dao，即 implements dao）</p>
-<p>spring的织入是在初始化的时候已经完成了，不是在调用get()方法时再完成</p>
-<p>因为它的底层是map，所以只要找到singletonObject.put方法就可以了，条件查询：beanName.equals(“dao”)<br>找到没有完成代理的地方再跑一遍</p>
-<p>spring后置处理器完成的动态代理<br>optimize优化，优化编辑器</p>
+        <p>多例设计模式：<br>构造方法私有化，然后在类的内部提供有若干实例化对象，并且通过static方法返回</p>
+<p>枚举：enum<br>一个类有且只有固定数量的实例</p>
+<p>所有的对象都是大写的<br>大写说明此处为实例化对象</p>
+<p>使用枚举之后可以简化的替代多例设计模式</p>
+<p>枚举可以实现单例模式</p>
+<p>（每一个枚举都相当于一个单例）</p>
+<p>枚举是一个被命名的整型常数的集合</p>
+<p>单例是一种特殊的枚举</p>
+<p>对于String s5 = new String(“Hello World”); 创建了几个对象，我先前理解有误。<br>总结各种看法，因为有new，所以堆中必然有一个对象。另外，如果常量池中已有”Hello World”，则不创建，没有，则在常量池中创建。所以这句代码，究竟在内存中创建一个还是两个对象，视情况而定。</p>
+<p>Java6和6之前，常量池是存放在方法区中的。</p>
+<p>Java7，将常量池是存放到了堆中，常量池就相当于是在永久代中，所以永久代存放在堆中。</p>
+<p>Java8之后，取消了整个永久代区域，取而代之的是元空间。没有再对常量池进行调整。</p>
+<p>堆内存、栈方法</p>
 
       
 
@@ -242,7 +251,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/29/aop/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/29/枚举/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -256,17 +265,8 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/29/hangmap问题的答案/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          (no title)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/29/新建文本文档 (8) - 副本/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/08/29/hangmap问题的答案/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
